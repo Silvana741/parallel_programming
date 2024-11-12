@@ -28,7 +28,7 @@ module purge || print_error_and_exit "No 'module' command"
 
 
 source ~/.bashrc
-conda activate "delphi_env" 
+conda activate "parallel-p" 
 
 
 python --version
