@@ -1,0 +1,27 @@
+Python 3.9.20
+2024-11-25 13:57:44,176	INFO worker.py:1777 -- Started a local Ray instance. View the dashboard at [1m[32m127.0.0.1:8265 [39m[22m
+Total cluster resources: {'memory': 168936449844.0, 'node:172.21.11.33': 1.0, 'object_store_memory': 76687049932.0, 'node:__internal_head__': 1.0, 'CPU': 128.0}
+Available resources: {'node:172.21.11.33': 1.0, 'node:__internal_head__': 1.0, 'CPU': 128.0, 'object_store_memory': 76687049932.0, 'memory': 168936449844.0}
+Traceback (most recent call last):
+  File "/mnt/lscratch/users/sbelegu/parallel_programming/test_knn_ray.py", line 63, in <module>
+    predictions = ray.get(knn.predict.remote(X_test))
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/_private/worker.py", line 2664, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/_private/worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::KNNClassifier.predict()[39m (pid=852064, ip=172.21.11.33, actor_id=09c425f7ed1d395bc28976e901000000, repr=<test_knn_ray.KNNClassifier object at 0x7f929843bee0>)
+  File "/mnt/lscratch/users/sbelegu/parallel_programming/test_knn_ray.py", line 21, in predict
+    predictions = ray.get([self._predict.remote(x) for x in X])
+  File "/mnt/lscratch/users/sbelegu/parallel_programming/test_knn_ray.py", line 21, in <listcomp>
+    predictions = ray.get([self._predict.remote(x) for x in X])
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/remote_function.py", line 139, in _remote_proxy
+    return self._remote(args=args, kwargs=kwargs, **self._default_options)
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/remote_function.py", line 468, in _remote
+    return invocation(args, kwargs)
+  File "/scratch/users/sbelegu/miniconda3/envs/delphi/lib/python3.9/site-packages/ray/remote_function.py", line 427, in invocation
+    list_args = ray._private.signature.flatten_args(
+TypeError: missing a required argument: 'x'

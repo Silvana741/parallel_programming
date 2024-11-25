@@ -1,1 +1,0 @@
-Enter this command on your laptop: ssh -p 8022 -NL 8888:172.21.12.55

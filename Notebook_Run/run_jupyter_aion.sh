@@ -6,7 +6,7 @@
 #SBATCH --output=Notebooks_logs/AION/notebook_%j.log
 
 #SBATCH -p batch
-#SBATCH -N 1
+#SBATCH -N 2
 #SBATCH --ntasks-per-node 64  # Optimized for 1 full node of aion
 #SBATCH -c 1
 
@@ -28,7 +28,7 @@ module purge || print_error_and_exit "No 'module' command"
 
 
 source ~/.bashrc
-conda activate "parallel-p" 
+conda activate "delphi" 
 
 
 python --version
@@ -41,5 +41,5 @@ jupyter notebook list
 jupyter --paths
 jupyter kernelspec list
 #echo "Enter this command on your laptop: ssh -p 8022 -NL 8888:$(facter ipaddress):8888 clee@access-iris.uni.lu" > notebook.log
-echo "Enter this command on your laptop: ssh -p 8022 -NL 8888:$(ip addr | egrep '172\.17|21'| grep 'inet ' | awk '{print $2}' | cut -d/ -f1)" > notebook.log
+echo "Enter this command on your laptop: ssh -p 8022 -NL 8888:$(ip addr | egrep '172\.17|21'| grep 'inet ' | awk '{print $2}' | cut -d/ -f1):8888 sbelegu@access-aion.uni.lu" > notebook.log
 wait $pid
