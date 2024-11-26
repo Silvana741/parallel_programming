@@ -1,2 +1,5 @@
 Notebook_Run/
 Notebooks_logs/
+__pycache__/
+notebook.log
+.ipynb_checkpoints/
